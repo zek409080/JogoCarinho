@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Jobs;
 
-public class MoveCano : MonoBehaviour
+public class CanoMovendo : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     private void Update()

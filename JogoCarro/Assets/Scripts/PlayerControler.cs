@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Correndo : MonoBehaviourPun
+public class PlayerControler : MonoBehaviourPun
 {
     [SerializeField] float moveSpeed, moveSpeedBase, timerColicion,timerColicionBase;
     float vertical, horizontal;

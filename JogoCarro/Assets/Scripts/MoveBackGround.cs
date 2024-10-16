@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveBG : MonoBehaviour
+public class MoveBackGround : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float speedBG = 1f;
     [SerializeField] private float width = 6f;
 
     private SpriteRenderer spriteRenderer;
@@ -20,7 +20,7 @@ public class MoveBG : MonoBehaviour
 
     private void Update()
     {
-        startSize = new Vector2(spriteRenderer.size.x + speed * Time.deltaTime, spriteRenderer.size.y);
+        startSize = new Vector2(spriteRenderer.size.x + speedBG * Time.deltaTime, spriteRenderer.size.y);
 
         if (spriteRenderer.size.x > width) 
         {

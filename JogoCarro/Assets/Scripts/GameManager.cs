@@ -1,10 +1,9 @@
-using Photon.Pun.Demo.SlotRacer;
 using Photon.Pun;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -19,31 +18,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         Time.timeScale = 1f;
+        StartCoroutine(AtivarLinhaDeChegadaDepoisDe30Segundos());
+        linhaDeChegada.SetActive(false);
     }
-    [PunRPC]
-    public void FimDeJogo() 
-    {
-        if (photonView.IsMine)
-        {
-            textVitoria.text = "Voçe ganhou! :)"; 
-        }
-        else
-        {
-            textVitoria.text = "Voçe Perdeu! :(";
-        }
-        PanelVitoria.SetActive(true);
-        Time.timeScale = 0f;
-    }
-    public void RestartGame() 
-    {
-        SceneManager.LoadScene("Menu");
-    }
-
-    const string playerPrefabPath = "Prefabs/Carro";
+    const string playerPrefabPath = "Prefabs/Player";
 
     int playersInGame;
-    List<Correndo> playerList = new List<Correndo>();
-    Correndo playerLocal;
+    List<PlayerControler> playerList = new List<PlayerControler>();
+    PlayerControler playerLocal;
 
     private void Start()
     {
@@ -51,7 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     private void CreatePlayer()
     {
-        Correndo player = NetworkManager.instance.Instantiate(playerPrefabPath, new Vector3(-7, 0, 0), Quaternion.identity).GetComponent<Correndo>();
+        PlayerControler player = NetworkManager.instance.Instantiate(playerPrefabPath, new Vector3(-7, 0, 0), Quaternion.identity).GetComponent<PlayerControler>();
         player.photonView.RPC("Initialize", RpcTarget.All);
     }
 
@@ -64,4 +46,31 @@ public class GameManager : MonoBehaviourPunCallbacks
             CreatePlayer();
         }
     }
+    [PunRPC]
+    public void FimDeJogo() 
+    {
+        if (photonView.IsMine)
+        {
+            textVitoria.text = "parabéns você Ganhou"; 
+        }
+        else
+        {
+            textVitoria.text = "Infelizmente você Perdeu";
+        }
+        PanelVitoria.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void RestartGame() 
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public GameObject linhaDeChegada;
+
+
+    IEnumerator AtivarLinhaDeChegadaDepoisDe30Segundos()
+    {
+        yield return new WaitForSeconds(3f);
+        linhaDeChegada.SetActive(true);
+    }
+
 }
