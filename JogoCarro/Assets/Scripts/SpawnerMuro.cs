@@ -3,20 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanoSpawner : MonoBehaviour
+public class SpawnerMuro : MonoBehaviour
 {
-
-
     [SerializeField] private float timerBase;
-    private float heightRange = 4f;
-    string obstaclePrefab = "Prefabs/Caixa";
+    string muroPrefab = "Prefabs/Muro";
     private float timer;
     private void Start()
     {
         if (PhotonNetwork.IsMasterClient )
         {
-            SpawnCano();
             timer = timerBase;
+            SpawnMuro();     
         }
     }
 
@@ -27,7 +24,7 @@ public class CanoSpawner : MonoBehaviour
             if (timer <= 0)
             {
                 timer = timerBase;
-                SpawnCano();
+                SpawnMuro();
             }
             else
             {
@@ -36,10 +33,10 @@ public class CanoSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnCano() 
+    private void SpawnMuro() 
     {
-        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-heightRange, heightRange),0);
-        GameObject cano = NetworkManager.instance.Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
-        Destroy(cano, 10);
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-4f, 4f),0);
+        GameObject muro = NetworkManager.instance.Instantiate(muroPrefab, spawnPos, Quaternion.identity);
+        Destroy(muro, 5);
     }
 }

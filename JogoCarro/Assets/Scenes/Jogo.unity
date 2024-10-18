@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 1838769859}
   - component: {fileID: 1838769860}
   m_Layer: 0
-  m_Name: SpawnerObstaculo
+  m_Name: SpawnerMuro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,8 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae89a285ba4b0747aaba8a16c4ee6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBG: 20
-  width: 0
+  speedBackGround: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

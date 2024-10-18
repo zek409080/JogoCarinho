@@ -7,9 +7,10 @@ using System.Collections;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField]TextMeshProUGUI textVitoria;
+    [SerializeField]TextMeshProUGUI text;
     public static GameManager Instance;
-    [SerializeField]  GameObject PanelVitoria;
+    [SerializeField]  GameObject panel;
+    public GameObject chegada;
     private void Awake()
     {
         if (Instance == null) 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         Time.timeScale = 1f;
         StartCoroutine(AtivarLinhaDeChegada());
-        linhaDeChegada.SetActive(false);
+        chegada.SetActive(false);
     }
     const string playerPrefabPath = "Prefabs/Player";
 
@@ -47,30 +48,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
     [PunRPC]
-    public void FimDeJogo() 
+    public void GameOver() 
     {
         if (photonView.IsMine)
         {
-            textVitoria.text = "parabéns você Ganhou"; 
+            text.text = "parabéns você Ganhou"; 
         }
         else
         {
-            textVitoria.text = "Infelizmente você Perdeu";
+            text.text = "Infelizmente você Perdeu";
         }
-        PanelVitoria.SetActive(true);
+        panel.SetActive(true);
         Time.timeScale = 0f;
     }
-    public void RestartGame() 
-    {
-        SceneManager.LoadScene("Menu");
-    }
-    public GameObject linhaDeChegada;
-
-
     IEnumerator AtivarLinhaDeChegada()
     {
         yield return new WaitForSeconds(16f);
-        linhaDeChegada.SetActive(true);
+        chegada.SetActive(true);
     }
 
 }

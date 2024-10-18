@@ -7,31 +7,29 @@ using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviourPun
 {
-    [SerializeField] float moveSpeed, moveSpeedBase, timerColicion,timerColicionBase;
+    [SerializeField] float moveSpeed, moveSpeedBase, timer,timerBase;
     float vertical, horizontal;
-    Rigidbody2D myRigidbody2d;
-    bool controllerOn = true, coliderOn, primeiroAoEncostas;
-
+    Rigidbody2D rb2d;
+    bool controllerOn = true, coliderOn;
     void Update()
     {
         MoveCar();
         if (coliderOn)
         {
-            timerColicion -= Time.deltaTime;
-            if (timerColicion <= 0)
+            timer -= Time.deltaTime;
+            if (timer <= 0)
             {
                 moveSpeed = moveSpeedBase;
-                timerColicion = timerColicionBase;
+                timer = timerBase;
             }
         }
     }
-
     [PunRPC]
     private void Initialize()
     {
         transform.Rotate(0,0,90);
         moveSpeed = moveSpeedBase;
-        myRigidbody2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         if (!photonView.IsMine)
         {
             Color color = Color.white;
@@ -47,25 +45,24 @@ public class PlayerControler : MonoBehaviourPun
         {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
-            myRigidbody2d.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
+            rb2d.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(controllerOn)
         {
             
-            if (collision.gameObject.tag == "Obstacle")
+            if (collision.gameObject.tag == "Muro")
             {
-                timerColicion = timerColicionBase;
+                timer = timerBase;
                 moveSpeed = moveSpeed / 2;
                 coliderOn = true;
             }
         }
         if (collision.gameObject.tag == "LinhaDeChegada")
         {
-            GameManager.Instance.photonView.RPC("FimDeJogo", RpcTarget.AllBuffered);  // GameManager.Instance.FimDeJogo();
+            GameManager.Instance.photonView.RPC("GameOver", RpcTarget.AllBuffered);
         }
     }
 }
