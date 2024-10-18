@@ -175,8 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   moveSpeedBase: 5
-  timerColicion: 0
-  timerColicionBase: 2
+  timer: 0
+  timerBase: 0
 --- !u!114 &7479753898194180615
 MonoBehaviour:
   m_ObjectHideFlags: 0

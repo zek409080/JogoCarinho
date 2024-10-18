@@ -1141,9 +1141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b7e697ca04ead44a01429ed2f60d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textVitoria: {fileID: 440343349}
-  PanelVitoria: {fileID: 1311714626}
-  linhaDeChegada: {fileID: 830912265}
+  text: {fileID: 440343349}
+  panel: {fileID: 1311714626}
+  chegada: {fileID: 830912265}
 --- !u!114 &1538374029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae89a285ba4b0747aaba8a16c4ee6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBackGround: 0
+  speedBackGround: 13
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
