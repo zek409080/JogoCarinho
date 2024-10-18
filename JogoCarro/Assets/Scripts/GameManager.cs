@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         Time.timeScale = 1f;
-        StartCoroutine(AtivarLinhaDeChegadaDepoisDe30Segundos());
+        StartCoroutine(AtivarLinhaDeChegada());
         linhaDeChegada.SetActive(false);
     }
     const string playerPrefabPath = "Prefabs/Player";
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     private void CreatePlayer()
     {
-        PlayerControler player = NetworkManager.instance.Instantiate(playerPrefabPath, new Vector3(-7, 0, 0), Quaternion.identity).GetComponent<PlayerControler>();
+        PlayerControler player = NetworkManager.instance.Instantiate(playerPrefabPath, new Vector3(0, -3, 0), Quaternion.identity).GetComponent<PlayerControler>();
         player.photonView.RPC("Initialize", RpcTarget.All);
     }
 
@@ -67,9 +67,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject linhaDeChegada;
 
 
-    IEnumerator AtivarLinhaDeChegadaDepoisDe30Segundos()
+    IEnumerator AtivarLinhaDeChegada()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(16f);
         linhaDeChegada.SetActive(true);
     }
 

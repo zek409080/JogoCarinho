@@ -29,6 +29,7 @@ public class PlayerControler : MonoBehaviourPun
     [PunRPC]
     private void Initialize()
     {
+        transform.Rotate(0,0,90);
         moveSpeed = moveSpeedBase;
         myRigidbody2d = GetComponent<Rigidbody2D>();
         if (!photonView.IsMine)

@@ -6,8 +6,12 @@ using UnityEngine.Jobs;
 public class CanoMovendo : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    private void Start()
+    {
+        transform.Rotate(0, 0, 90);
+    }
     private void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        transform.position += Vector3.down * speed * Time.deltaTime;
     }
 }

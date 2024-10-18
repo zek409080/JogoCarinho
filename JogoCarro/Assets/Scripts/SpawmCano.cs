@@ -8,12 +8,12 @@ public class CanoSpawner : MonoBehaviour
 
 
     [SerializeField] private float timerBase;
-    private float heightRange = 0.45f;
+    private float heightRange = 4f;
     string obstaclePrefab = "Prefabs/Caixa";
     private float timer;
     private void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient )
         {
             SpawnCano();
             timer = timerBase;
@@ -38,7 +38,7 @@ public class CanoSpawner : MonoBehaviour
 
     private void SpawnCano() 
     {
-        Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heightRange, heightRange));
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-heightRange, heightRange),0);
         GameObject cano = NetworkManager.instance.Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
         Destroy(cano, 10);
     }
