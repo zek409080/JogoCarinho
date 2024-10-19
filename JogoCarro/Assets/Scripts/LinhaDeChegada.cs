@@ -14,7 +14,7 @@ public class LinhaDeChegada : MonoBehaviour
 
     IEnumerator AtivarLinhaDeChegadaDepoisDe30Segundos()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(30f);
         linhaDeChegada.SetActive(true);
     }
 }

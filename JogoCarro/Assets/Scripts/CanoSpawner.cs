@@ -8,7 +8,7 @@ public class CanoSpawner : MonoBehaviour
 
 
     [SerializeField] private float timerBase;
-    private float heightRange = 0.45f;
+    private float heightRange = 2f;
     string obstaclePrefab = "Prefabs/Caixa";
     private float timer;
     private void Start()

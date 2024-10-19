@@ -34,10 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         PanelVitoria.SetActive(true);
         Time.timeScale = 0f;
     }
-    public void RestartGame() 
-    {
-        SceneManager.LoadScene("Menu");
-    }
+
 
     const string playerPrefabPath = "Prefabs/Carro";
 
